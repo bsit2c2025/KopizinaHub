@@ -27,3 +27,8 @@ SQLite is the default local database. The application reads optional configurati
 ## Current scope
 
 The current application includes the public landing page, reservation intake, staff login, reservation management, dashboard summaries, and date-range reports. Loyalty cards, transaction history, and prevention of conflicting/double bookings are ideas recorded for future specification; they are not represented as implemented features.
+
+## Project Screenshots
+
+Landing Page
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/264aca63-c742-4259-b64b-d8e9e2f0a618" />
