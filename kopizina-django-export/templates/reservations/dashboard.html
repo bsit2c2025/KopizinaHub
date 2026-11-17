@@ -1,0 +1,19 @@
+{% extends 'reservations/base_admin.html' %}
+{% block title %}Overview · Kopizina dashboard{% endblock %}
+{% block content %}
+<section class="admin-hero">
+  <div><p class="admin-eyebrow">Private workspace · overview</p><h1>Make room for<br><em>good work.</em></h1><p>Manage reservation requests, keep the room moving, and review the signals behind the day.</p></div>
+  <div class="admin-hero-note"><span class="admin-sun">✦</span><span>Staff-only workspace</span></div>
+</section>
+<div class="summary-grid">
+  <article class="summary-card summary-card-dark"><span>Total records</span><strong>{{ total_records }}</strong><small>All reservation requests</small></article>
+  <article class="summary-card"><span>Upcoming</span><strong>{{ upcoming_count }}</strong><small>Future, non-cancelled</small></article>
+  <article class="summary-card summary-card-yellow"><span>Pending</span><strong>{{ pending_count }}</strong><small>Needs a reply</small></article>
+  <article class="summary-card"><span>Confirmed</span><strong>{{ confirmed_count }}</strong><small>Ready to welcome</small></article>
+</div>
+<div class="overview-grid">
+  <section class="admin-panel business-panel"><p class="admin-eyebrow">Business overview</p><h3>A calm corner for clear thinking, slow sips, and focused work.</h3><p>Kopizina brings coffee and office together for students, freelancers, and quiet thinkers.</p><div class="overview-metrics"><span><strong>WiFi</strong> stable</span><span><strong>Power</strong> at desks</span><span><strong>Coffee</strong> unlimited</span></div></section>
+  <section class="admin-panel"><div class="panel-heading"><h3>Quick navigation</h3></div><div class="quick-links"><a href="{% url 'reservation_list' %}"><span>01</span><strong>Review reservations</strong><em>↗</em></a><a href="{% url 'reservation_create' %}"><span>02</span><strong>Create a record</strong><em>↗</em></a><a href="{% url 'reports' %}"><span>03</span><strong>Open reports</strong><em>↗</em></a></div></section>
+</div>
+<section class="admin-panel recent-panel"><div class="panel-heading"><h3>Recent reservations</h3><a class="admin-link" href="{% url 'reservation_list' %}">View all ↗</a></div>{% if recent_reservations %}<div class="mini-table">{% for reservation in recent_reservations %}<div class="mini-row"><span><strong>{{ reservation.name }}</strong><small>{{ reservation.contact }}</small></span><span>{{ reservation.preferred_date }}<small>{{ reservation.arrival_time }}</small></span><span>{{ reservation.party_size }}</span><span class="status-pill status-{{ reservation.status }}">{{ reservation.get_status_display }}</span></div>{% endfor %}</div>{% else %}<p class="empty-state">No reservation records yet.</p>{% endif %}</section>
+{% endblock %}

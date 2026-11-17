@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in · Kopizina dashboard</title>
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body class="login-body">
+  <div class="login-shell">
+    <section class="login-card" aria-labelledby="login-title">
+      <a class="admin-brand" href="{% url 'home' %}"><img src="{% static 'assets/kopizina-wordmark.webp' %}" alt="Kopizina"></a>
+      <p class="admin-eyebrow">Private workspace</p>
+      <h1 id="login-title">Log in to<br><em>the room behind the room.</em></h1>
+      <p class="login-copy">Use your Django staff account to access reservation records, CRUD tools, and reports.</p>
+      {% if form.non_field_errors %}<div class="login-error" role="alert">{{ form.non_field_errors }}</div>{% endif %}
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+        <label class="admin-field">Username {{ form.username }}</label>
+        <label class="admin-field">Password {{ form.password }}</label>
+        <button class="admin-button admin-button-dark" type="submit">Continue to dashboard <span aria-hidden="true">↗</span></button>
+      </form>
+      <a class="login-back" href="{% url 'home' %}">← Back to public site</a>
+    </section>
+    <p class="login-foot">coffee + office · a little calm in the chaos</p>
+  </div>
+</body>
+</html>

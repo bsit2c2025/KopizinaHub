@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Kopizina dashboard{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body class="admin-body">
+  <header class="admin-header">
+    <a class="admin-brand" href="{% url 'dashboard' %}" aria-label="Kopizina dashboard"><img src="{% static 'assets/kopizina-wordmark.webp' %}" alt="Kopizina"></a>
+    <nav class="admin-header-actions" aria-label="Dashboard navigation">
+      <span class="admin-user">{{ request.user.username }}</span>
+      <a class="admin-link" href="{% url 'dashboard' %}">Overview</a>
+      <a class="admin-link" href="{% url 'reservation_list' %}">Reservations</a>
+      <a class="admin-link" href="{% url 'reports' %}">Reports</a>
+      <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="admin-link-button" type="submit">Log out</button></form>
+    </nav>
+  </header>
+  <main class="admin-main">
+    {% if messages %}
+      {% for message in messages %}<div class="toast is-visible" role="status">{{ message }}</div>{% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

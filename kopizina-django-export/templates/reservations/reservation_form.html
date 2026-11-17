@@ -1,0 +1,6 @@
+{% extends 'reservations/base_admin.html' %}
+{% block title %}{{ heading }} · Kopizina dashboard{% endblock %}
+{% block content %}
+<section class="admin-hero"><div><p class="admin-eyebrow">Records · edit</p><h1>{{ heading|safe }}</h1><p>Keep the request details current so the team can respond with confidence.</p></div><a class="admin-button admin-button-ghost" href="{% url 'reservation_list' %}">← Back to records</a></section>
+<section class="admin-panel form-panel"><form method="post" class="dashboard-form">{% csrf_token %}{% if form.non_field_errors %}<div class="login-error">{{ form.non_field_errors }}</div>{% endif %}{{ form.as_p }}<div class="dialog-actions"><a class="admin-button admin-button-ghost" href="{% url 'reservation_list' %}">Cancel</a><button class="admin-button admin-button-dark" type="submit">{{ submit_label }} ↗</button></div></form></section>
+{% endblock %}
